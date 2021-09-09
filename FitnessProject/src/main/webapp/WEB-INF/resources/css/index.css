@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+#wrapper{
+	margin:0;
+	padding:0;
+	background: url('../images/Play_New_Nike.gif');
+	background-repeat: no-repeat;
+  	background-size: 100%;
+}
