@@ -3,8 +3,9 @@
 <%@include file="../sidebar.jsp" %>
 <%@include file="../loginside.jsp" %>
 <link rel="stylesheet" href="css/dumbell.css" >
+<div class="board_list_wrap">
  <form name="frm" id="dumbell_form" method ="post">
-        <div class="board_list_wrap">
+        
             <table class="board_list">
                 <div class="title">
                     <h2>Dumbell Exercise</h2>
@@ -39,19 +40,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${exerciseList}" var="exerciseVO">
+                    <c:forEach items="${exerciseList}" var="DumbellVO">
                         <tr>
-                            <td>${exerciseVO.deseq}</td>
-                            <td>${exerciseVO.dex_img}</td>
-                            <td>${exerciseVO.dex.name}</td>
-                            <td>${exerciseVO.dex_part}</td>
-                            <td>${exerciseVO.description}</td>
-                            <td><input type="checkbox"></button></td>
+                            <td>${DumbellVO.deseq}</td>
+                            <td>${DumbellVO.dex_img}</td>
+                            <td>${DumbellVO.dex_name}</td>
+                            <td>${DumbellVO.dex_part}</td>
+                            <td>${DumbellVO.description}</td>
+                            <td><input type="checkbox"></td>
                             
                         </tr>
-                   </c:forEach>
-                        
-        </div>
-    </form>   
+                   	</c:forEach>
+                   	</tbody>
+        
+    </form> 
+    </div>  
 <%@include file="../page_area.jsp" %>	
 <%@include file="../footer.jsp" %>
