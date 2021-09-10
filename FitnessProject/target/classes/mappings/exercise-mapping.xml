@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DumbellDAO">
-	<select id="listdumbellexercise" parameterType="String">
-		SELECT de_seq,dex_name,dex_part,dex_description,dex_img,dex_ckbox
+	
+
+	<!-- 덤벨운동 목록 조회 -->
+	<select id="dumbellList" parameterType="String" resultType="dumbell">
+		SELECT deseq, dex_name, dex_part, dex_description, dex_img, dex_ckbox
 		  FROM dumbell_exercise
 		 WHERE dex_name LIKE '%'||#{dex_name}||'%'
-		 ORDER BY de_seq DESC 
+		 ORDER BY deseq DESC 
 	</select>
 	
-	<select id="listWithPaging" parameterType="hashMap" >
+	<!-- 페이지별 운동목록 조회 -->
+	<select id="listWithPaging" parameterType="hashMap" resultType="dumbell">
 		<![CDATA[
-		SELECT de_seq,dex_name,dex_part,dex_description,dex_img,dex_ckbox
+		SELECT deseq,dex_name,dex_part,dex_description,dex_img,dex_ckbox
 		  FROM
-    		(SELECT row_number() over(ORDER BY dex_name) de_seq,dex_name,dex_part,
-    				dex_description,dex_img,dex_ckbox
+    		(SELECT row_number() over(ORDER BY dex_name) deseq, dex_name,dex_part, dex_description,dex_img,dex_ckbox
       		   FROM dumbell_exercise
      		  WHERE dex_name LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}

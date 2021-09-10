@@ -4,8 +4,7 @@
 <%@include file="../loginside.jsp" %>
 <link rel="stylesheet" href="css/dumbell.css" >
 <div class="board_list_wrap">
- <form name="frm" id="dumbell_form" method ="post">
-        
+	<form name="frm" id="dumbell_form" method ="post">
             <table class="board_list">
                 <div class="title">
                     <h2>Dumbell Exercise</h2>
@@ -36,24 +35,32 @@
                             <th style="width: 30%;">설명</th>
                             <th style="width: 10%;">작성일</th>
                             <th style="width: 15%;">리스트 저장</th>
-                            
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${exerciseList}" var="DumbellVO">
-                        <tr>
-                            <td>${DumbellVO.deseq}</td>
-                            <td>${DumbellVO.dex_img}</td>
-                            <td>${DumbellVO.dex_name}</td>
-                            <td>${DumbellVO.dex_part}</td>
-                            <td>${DumbellVO.description}</td>
-                            <td><input type="checkbox"></td>
-                            
-                        </tr>
-                   	</c:forEach>
-                   	</tbody>
-        
-    </form> 
+	                    <c:when test="${dumbListSize<=0}">
+							    <tr>
+							      <td width="100%" colspan="7" align="center" height="23">
+							        등록된 운동이 없습니다.
+							      </td>      
+							    </tr>
+						</c:when>
+						<c:otherwise>
+		                    <c:forEach items="${exerciseList}" var="DumbellVO">
+		                        <tr>
+		                            <td>${DumbellVO.deseq}</td>
+		                            <td>${DumbellVO.dex_img}</td>
+		                            <td>${DumbellVO.dex_name}</td>
+		                            <td>${DumbellVO.dex_part}</td>
+		                            <td>${DumbellVO.description}</td>
+		                            <td><input type="checkbox"></td>
+		                            
+		                        </tr>
+		                   </c:forEach>
+	                   	</c:otherwise>
+                   </tbody>
+        	</table>
+    	</form> 
     </div>  
 <%@include file="../page_area.jsp" %>	
 <%@include file="../footer.jsp" %>

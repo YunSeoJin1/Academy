@@ -16,16 +16,26 @@ public class DumbellDAO{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	//덤벨 리스트
 	public List<DumbellVO> getDumbellList(String dex_name){
 		
-		return mybatis.selectList("DumbellDAO.listdumbellexercise",dex_name);
+		return mybatis.selectList("DumbellDAO.dumbellList",dex_name);
 	}
 	
+	
+	//페이징 처리
 	public List<DumbellVO> getListWithPaging(Criteria criteria, String key) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("criteria", criteria);
 		map.put("key", key);
 		
-		return mybatis.selectList("ProductDAO.listWithPaging", map);
+		return mybatis.selectList("DumbellDAO.listWithPaging", map);
 	}
+	//리스트 갯수
+	public int countProductList(String dex_name) {
+		
+		return mybatis.selectOne("DumbellDAO.countProductList", dex_name);
+	}
+	
+	
 }

@@ -3,11 +3,13 @@ package com.green.biz.exercise;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.green.biz.dao.DumbellDAO;
 import com.green.biz.dto.DumbellVO;
 import com.green.biz.util.Criteria;
 
+@Service("dumbellService")
 public class DumbellServiceimpl implements DumbellService {
 	
 	@Autowired
@@ -21,16 +23,16 @@ public class DumbellServiceimpl implements DumbellService {
 
 	
 	@Override
-	public int countexerciseList(String name) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countexerciseList(String dex_name) {
+		
+		return dDao.countProductList(dex_name);
 	}
 
 
 	@Override
 	public List<DumbellVO> getListWithPaging(Criteria criteria, String key) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dDao.getListWithPaging(criteria, key);
 	}
 
 
